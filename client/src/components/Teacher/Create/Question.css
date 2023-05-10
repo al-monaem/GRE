@@ -1,0 +1,45 @@
+/* Assuming the checkbox is within a container with a class of "checkbox-container" */
+.checkbox-container input[type="checkbox"] {
+    -webkit-appearance: none;
+    /* Hide the default checkbox */
+    -moz-appearance: none;
+    appearance: none;
+    width: 16px;
+    /* Adjust the width and height according to your design */
+    height: 16px;
+    border: 2px solid orange;
+    /* Set the border color to orange */
+    outline: none;
+    position: relative;
+    cursor: pointer;
+    background-color: white;
+    border-radius: 4px;
+    /* Set the background color to white */
+}
+
+/* Create a pseudo-element for the checkmark */
+.checkbox-container input[type="checkbox"]::after {
+    content: "\2713";
+    /* Unicode character for checkmark */
+    font-size: 10px;
+    /* Adjust the font size if needed */
+    color: white;
+    /* Set the checkmark color to white */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
+/* Style the checkmark when the checkbox is checked */
+.checkbox-container input[type="checkbox"]:checked {
+    background-color: orange;
+    /* Set the background color to orange when checked */
+    border-color: orange;
+    /* Set the border color to orange when checked */
+}
+
+.checkbox-container input[type="checkbox"]:checked::after {
+    display: block;
+}
