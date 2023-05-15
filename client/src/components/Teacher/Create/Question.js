@@ -57,25 +57,27 @@ const Question = ({ questionId, questionText }) => {
             className="w-full flex flex-col bg-white p-5 rounded-lg shadow-md border border-orange-400">
             <div className="flex">
                 <span className="font-semibold text-lg">{questionId})</span>&nbsp;&nbsp;
-                <textarea value={questionText} onChange={e => onChangeQuestion(e)} className="w-full border px-2 py-1" placeholder="Enter a question" />
+                <textarea required value={questionText} onChange={e => onChangeQuestion(e)} className="rounded-md focus:outline-orange-300 w-full border px-2 py-1" placeholder="Enter a question" />
             </div>
             <div className="p-3 flex flex-col space-y-1">
                 {question.options.map((option, index) => {
                     return <motion.div
+                        key={index}
                         initial={{ opacity: 0, y: 100 }}
                         animate={{ opacity: 100, y: 0 }}
                         className="flex items-center">
                         {option.id}.&nbsp;&nbsp;
                         <input
+                            required
                             onChange={e => onChangeOption(e, option.id)}
                             value={option.option}
-                            className="px-2 py-1 rounded-md w-50% border focus:outline-none" placeholder="Enter option" />
+                            className="text-sm px-2 py-1 rounded-md w-50% border focus:outline-orange-300" placeholder="Enter option" />
                         <div className="checkbox-container">
                             <input
                                 className="ml-2"
                                 onClick={e => handleCheck(e)}
                                 value={option.id} type="checkbox"
-                                checked={question.correct.includes(option.id.toString())}
+                                defaultChecked={question.correct.includes(option.id.toString())}
                             />
                         </div>
                     </motion.div>

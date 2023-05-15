@@ -26,16 +26,18 @@ const Create = () => {
         }
     }, [])
 
-    useEffect(() => {
-        localStorage.setItem("questions", JSON.stringify(questions))
-    }, [questions])
+    const onSubmit = e => {
+        e.preventDefault()
+        navigate("./schedule")
+    }
 
     return (
-        <div className="w-full h-screen bg-[#fafafa]">
+        <form onSubmit={e => onSubmit(e)} className="w-full h-screen">
             <Header title={"Create Exam"} />
             <div className="w-full h-auto flex pb-5 justify-center">
                 <div className="w-[85%] flex">
                     <button
+                        type="button"
                         onClick={onClick}
                         className="hover:bg-[#bb703f] transition ml-auto bg-[#ff9248] px-2 py-1 rounded-md shadow-md text-white flex items-center font-semibold">
                         <AiOutlineQuestionCircle />&nbsp;Add New Question
@@ -44,21 +46,22 @@ const Create = () => {
             </div>
             <div className="flex-col flex w-full items-center h-[75%]">
                 <div className="flex w-[85%] px-1 flex-col space-y-5 items-center overflow-y-scroll rounded-lg">
-                    {questions.map((question) => {
+                    {questions.map((question, index) => {
                         return (
-                            <Question questionId={question.id} questionText={question.question} />
+                            <Question key={index} questionId={question.id} questionText={question.question} />
                         )
                     })}
                 </div>
                 <div className="w-full h-auto flex pb-5 mt-3 justify-center">
                     <div className="w-[85%] flex">
                         <button
-                            onClick={() => navigate("./schedule")}
+                            type="submit"
                             className="flex items-center px-2 py-1 transition bg-orange-400 hover:bg-orange-500 text-white rounded-md font-semibold">
                             <MdNavigateNext className="" />
                             Next
                         </button>
                         <button
+                            type="button"
                             onClick={() => {
                                 dispatch(deleteQuestion())
                             }}
@@ -70,7 +73,7 @@ const Create = () => {
 
                 </div>
             </div>
-        </div>
+        </form>
     )
 }
 

@@ -22,11 +22,11 @@ const initialState = {
 }
 
 const questionSlice = createSlice({
-    name: 'question',
+    name: 'questions',
     initialState,
     reducers: {
-        loadQuestions: (state, action) => {
-            state.questions = action.payload
+        reset: (state) => {
+            return initialState
         },
         addQuestion: (state) => {
             state.questions.push({
@@ -86,5 +86,5 @@ const questionSlice = createSlice({
     }
 })
 
-export const { deleteOption, setAnswer, removeAnswer, addQuestion, updateQuestion, addOption, updateOption, loadQuestions, deleteQuestion } = questionSlice.actions
+export const { reset, deleteOption, setAnswer, removeAnswer, addQuestion, updateQuestion, addOption, updateOption, loadQuestions, deleteQuestion } = questionSlice.actions
 export default questionSlice.reducer
